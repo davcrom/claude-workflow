@@ -164,6 +164,19 @@ snapshot_status START_STATUS
 EXIT_REASON="finished"
 trap print_summary EXIT
 
+# Print the detected ticket set up front so the user sees the starting state
+# before any agent runs.
+print_initial_status() {
+    echo "=== ralph-loop start: detected tickets ===" >&2
+    {
+        local t
+        for t in "${!START_STATUS[@]}"; do
+            printf '  %-28s %s\n' "$(ticket_label "$t")" "${START_STATUS[$t]}"
+        done
+    } | sort >&2
+}
+print_initial_status
+
 iter=0
 while todos_remain; do
     iter=$((iter + 1))
@@ -176,6 +189,7 @@ while todos_remain; do
 
     snapshot_status before_status
     head_before=$(git rev-parse HEAD)
+    echo "ralph-loop: launching agent (iter $iter/$MAX_ITERS)" >&2
     stderr_file=$(mktemp)
     set +e
     invoke_claude "$LOOP_PROMPT" 2> "$stderr_file"

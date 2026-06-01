@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill"
+    ],
+    "deny": []
+  },
+  "model": "opus",
+  "effortLevel": "medium"
+}

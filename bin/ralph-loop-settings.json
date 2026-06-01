@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill",
+      "Bash(pytest *)",
+      "Bash(python -c *)",
+      "Bash(python -m *)",
+      "Bash(python *.py)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Edit(*)",
+      "Write(*)"
+    ],
+    "deny": [
+      "Bash(pip install *)",
+      "Bash(pip uninstall *)",
+      "Bash(apt *)",
+      "Bash(sudo *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(git push *)",
+      "Edit(/.git/**)",
+      "Edit(/.claude/**)",
+      "Read(.env)"
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "allowUnsandboxedCommands": false,
+    "filesystem": {
+      "denyWrite": ["./.git/**"]
+    },
+    "network": {
+      "allowedDomains": []
+    }
+  }
+}

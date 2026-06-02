@@ -44,8 +44,9 @@ written in bulk check imagined behavior, not real behavior.
    - Are there loops where a comprehension or vectorized operation could have been used?
    - Does any function do more than one thing and want splitting?
    - Is there anything a cold reader couldn't understand from the code alone?
-4. COMMIT: one logical change per commit. You cannot report the work complete
-   until you make a commit.
+4. COMMIT: one logical change per commit. Stage only the files this change
+   touched, by explicit path — never `git add -A` or `git add .`. You cannot
+   report the work complete until you make a commit.
 
 **Coding principles:**
 - **Pythonic**: prefer list comprehensions, context managers, generators, and built-in functions. Follow PEP 8.

@@ -22,12 +22,34 @@ tickets that an implementer can pick up and build one at a time.
 - Find existing solutions and utilities. Tickets should reuse them, not reinvent.
 - Identify where new code belongs. Flag poor structural fit before ticketing it.
 
+**Verify external data before ticketing it:**
+- When a ticket depends on the shape of external data — an API response, a file
+  format, a library's return value — confirm that shape before writing the
+  ticket. You have network access: fetch a real sample. If you cannot, ask the
+  user.
+- Write the verified facts into the ticket: exact field names, types, one example
+  value, and any gotcha (a number served as a string, an unexpected page size).
+  Date-stamp the verification.
+- Do not write mock data or fixtures into test modules. Capturing the data shape
+  in the ticket is your job; building the mock from it is the implementer's job
+  under `/tdd`.
+
 **Slice the spec into tickets:**
 - Each ticket is a **vertical slice**: it touches every layer needed to deliver
   one testable behavior end to end. Not a horizontal layer ("all the I/O"), not a
   whole subsystem.
 - Each ticket is **independently testable** — it has a concrete acceptance check
   that proves the behavior works, allowing immediate feedback.
+- Give every ticket at least one automated acceptance check the implementer can
+  run. Never let a manual check — GUI, browser, live network — be a ticket's only
+  acceptance. Pair it with an automated check and label the manual part "not a
+  gate".
+- Separate pure logic from UI and I/O. Put the logic in a dependency-free
+  function the test calls directly; leave the thin UI or network wrapper for the
+  manual check. Test the logic. Do not write integration or GUI tests.
+- Write every ticket to pass in the implementer's environment: headless, no
+  display, no network. If verifying a ticket needs a display or live network,
+  split out the part that does not and move the rest to the manual check.
 - Each ticket is **self-contained** — explicit inputs and outputs, names the
   files and functions it touches, names the existing patterns it should reuse. An
   implementer should not need to re-derive context from the spec.

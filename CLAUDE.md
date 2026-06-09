@@ -40,6 +40,7 @@ After the work, check whether the project `CLAUDE.md` or `README` need updating.
 
 - Stop on anything unexpected. Report findings. Wait for instructions.
 - Never manually patch merge conflicts. Use `git merge`. Stash or commit first if the working directory is dirty.
+- Work on the current branch; never create branches, git worktrees, or worktree-isolated agents unless I explicitly ask.
 - Only change what was requested. Collect off-task findings and present them for approval.
 - Verify before acting. Check every claim, value, path, name, and command. Do not act on assumptions. Use a method that can actually detect the distinction you are claiming, not one that could silently mask it.
 - Never fabricate. If you have not observed it, say so.

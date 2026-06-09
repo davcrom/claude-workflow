@@ -87,7 +87,7 @@ approved_tickets() {
     local slug t
     while IFS= read -r slug; do
         [ -z "$slug" ] && continue
-        for t in tickets/*.md; do
+        for t in tickets/*/*.md; do
             [ -e "$t" ] || continue
             grep -q "^Spec: $slug\$" "$t" || continue
             echo "$t"

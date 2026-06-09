@@ -59,8 +59,9 @@ tickets that an implementer can pick up and build one at a time.
   the spec.
 
 **Ticket files:**
-- One file per ticket: `tickets/<NN>-<short-slug>.md`, numbered in dependency
-  order.
+- One file per ticket: `tickets/<spec-slug>/<NN>-<short-slug>.md`, under a
+  per-spec subdirectory, numbered in dependency order restarting at `01` for
+  each spec.
 - Don't commit specs or tickets; both are local working files, not
   version-controlled.
 - Always adhere to this structure:
@@ -85,7 +86,7 @@ The concrete check that proves it works — inputs and expected outputs.
 
 **After ticketing:**
 - Populate the spec's `## Implementation plan` section with one bullet per ticket
-  in dependency order (`tickets/<NN>-<slug>.md`). Write this once at slice time;
+  in dependency order (`tickets/<spec-slug>/<NN>-<slug>.md`). Write this once at slice time;
   do not update it as tickets change state — status lives in the ticket files.
 - Report the ticket list and dependency order to the user.
 - Implementation happens under `/tdd`, one ticket at a time.

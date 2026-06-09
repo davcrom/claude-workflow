@@ -45,7 +45,8 @@ written in bulk check imagined behavior, not real behavior.
    - Does any function do more than one thing and want splitting?
    - Is there anything a cold reader couldn't understand from the code alone?
 4. COMMIT: one logical change per commit. Stage only the files this change
-   touched, by explicit path — never `git add -A` or `git add .`. You cannot
+   touched, by explicit path — never `git add -A` or `git add .`, and never
+   stage spec or ticket files even when this change modified them. You cannot
    report the work complete until you make a commit.
 
 **Coding principles:**

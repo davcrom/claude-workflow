@@ -4,7 +4,7 @@ description: Invoke when writing or updating a spec — a standalone design arti
 ---
 
 A spec concisely captures all the essential information the implementation needs.
-It is not a design discussion (/discuss), not a literature review (/research),
+It is not a design discussion (/software-align), not a literature review (/research),
 not implementation notes.
 
 **When to write one:**
@@ -33,7 +33,7 @@ not implementation notes.
 - Never bolt new content onto a finished spec as an appendix, trailer, or ad-hoc subsection. Integrate every fact into the template section where it belongs, restructuring existing prose if needed.
 
 **Review re-entry:**
-- If an ambiguity, gap, or unresolved decision surfaces during spec review, stop editing and re-invoke /discuss to resolve it. Do not patch the spec from your own inference.
+- If an ambiguity, gap, or unresolved decision surfaces during spec review, stop editing and re-invoke /software-align to resolve it. Do not patch the spec from your own inference.
 
 **Lifecycle:**
 - Update the spec before the code change that implements a decision, not after.

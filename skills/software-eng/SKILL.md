@@ -19,8 +19,36 @@ tickets that an implementer can pick up and build one at a time.
 **Survey the codebase before slicing:**
 - Read the code the spec will touch. Note existing conventions — style,
   structure, naming.
-- Find existing solutions and utilities. Tickets should reuse them, not reinvent.
 - Identify where new code belongs. Flag poor structural fit before ticketing it.
+- Optimization is global in intent but bounded in reach: act on the spec's blast
+  radius — the code it touches, duplicates, or supersedes — never refactor the
+  wider codebase.
+
+**Reuse by generalizing, before adding:**
+For each new behavior, apply this test before ticketing a new function:
+1. Separate the fixed algorithm from the caller-specific particulars — literal
+   values, hardcoded names, the specific data labels it assumes.
+2. The algorithm plus the shape of data it runs on is the core operation.
+3. If an existing function's algorithm becomes identical to the new one once the
+   particulars are turned into parameters (a value, a name, or a passed-in
+   function), they share a core operation. Generalize the existing function to
+   serve both, pass the particulars as arguments, and route both callers through
+   it. Do not ticket a parallel function.
+4. The tell: if unifying them would force an internal branch on a mode or type
+   flag (`if analysis == "x"`), the cores differ — keep them separate. If it needs
+   only added parameters, the core is shared — unify. A mode branch is the signal
+   of the wrong abstraction; do not write one.
+
+**Remove what the change supersedes:**
+After the reuse pass, audit what the change makes dead, within the same blast
+radius:
+- functions now reached only through a newly generalized function,
+- parameters or branches the new design no longer hits,
+- modules the spec wholly replaces.
+Grep the callers to confirm nothing else still uses each item. Assign every
+confirmed-dead item to the same ticket that introduces its replacement, in that
+ticket's `## Removes` section — not a follow-up. A ticket is not done until its
+superseded code is gone.
 
 **Verify external data before ticketing it:**
 - When a ticket depends on the shape of external data — an API response, a file
@@ -77,6 +105,10 @@ The one testable behavior this slice delivers.
 
 ## Touches
 Files, functions, and modules this ticket creates or modifies.
+
+## Removes
+Code this ticket deletes because the change supersedes it, with the confirmation
+that no caller remains. "None" if it deletes nothing.
 
 ## Approach
 Existing patterns, utilities, and conventions to reuse. How it fits the codebase.

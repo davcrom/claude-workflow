@@ -10,8 +10,8 @@ a ticket was named, set its Status to In progress before starting.
 
 **Before writing code:**
 - Read what the caller named. If a ticket was named, read the ticket file, the
-  code it names under "Touches", and the spec section it points to. Otherwise
-  read the code the work will touch.
+  code it names under "Touches" and "Removes", and the spec section it points to.
+  Otherwise read the code the work will touch.
 - Sample actual data values before hardcoding thresholds, bins, mappings, or
   category sets.
 - Reuse existing patterns and utilities; if a ticket names them under
@@ -20,7 +20,7 @@ a ticket was named, set its Status to In progress before starting.
   missing, scope is unclear — stop and report. If a ticket was named, set its
   Status to Blocked and write a `## Block reason` section into the ticket file
   quoting the concrete obstacle in one short paragraph, then return to
-  `/software-eng` or `/spec-write`. Otherwise return to `/discuss` or
+  `/software-eng` or `/spec-write`. Otherwise return to `/software-align` or
   `/spec-write` as appropriate. Do not improvise a fix in code.
 - Stay within the named scope. Flag out-of-scope findings for approval; do not
   act on them.
@@ -44,6 +44,8 @@ written in bulk check imagined behavior, not real behavior.
    - Are there loops where a comprehension or vectorized operation could have been used?
    - Does any function do more than one thing and want splitting?
    - Is there anything a cold reader couldn't understand from the code alone?
+   - Does every non-trivial function carry a NumPy-style docstring covering what
+     its signature does not show — units, shape, side effects, why?
 4. COMMIT: one logical change per commit. Stage only the files this change
    touched, by explicit path — never `git add -A` or `git add .`, and never
    stage spec or ticket files even when this change modified them. You cannot
@@ -61,6 +63,7 @@ written in bulk check imagined behavior, not real behavior.
 - **Explicit defaults**: put meaningful defaults in the function signature, not buried in the body.
 - **Imports at the top**: no lazy/function-level imports. Exception: optional dependencies that should not be required at module load.
 - **Type hints** on all function signatures.
+- **Docstrings**: NumPy-style on every non-trivial function; skip trivial one-line helpers whose name says it all. Document what the signature does not show — units, shape, side effects, why — not a restatement of the types.
 - Functions: ≤40 lines, ≤5 parameters, one clear purpose.
 
 **For data science:**
@@ -77,6 +80,10 @@ written in bulk check imagined behavior, not real behavior.
 - Inspect output data structures: shapes, types, null counts, value ranges.
 - If a ticket was named, confirm its Acceptance check passes end to end;
   otherwise confirm the change behaves as the caller described.
+- If the ticket's "Removes" section lists code, delete it and confirm the tests
+  still pass. The ticket is not done until that code is gone. Do not originate
+  deletions: superseded code the ticket did not list is an out-of-scope finding
+  you flag, not something you act on.
 - If a ticket was named, set its Status to Done.
 - If a ticket was named, read the spec slug from its `Spec:` field. When every
   ticket file whose `Spec:` matches that slug has `Status: Done`, set the spec's
@@ -87,7 +94,7 @@ written in bulk check imagined behavior, not real behavior.
 A tool greps these as whole lines, so the status line carries only the status
 word — no trailing date or punctuation.
 - Ticket status is a single inline line:
-  `Status: In progress` / `Status: Done` / `Status: Blocked`
+  `Status: Todo` / `Status: Done` / `Status: Blocked`
 - A blocked ticket also gets a `## Block reason` section.
 - A spec's status is the value line under its `## Status` header; when every
   ticket for the spec is done, write:

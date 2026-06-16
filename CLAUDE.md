@@ -10,7 +10,8 @@ Invoke the relevant skill before responding. Skills are stateless — re-invoke 
 
 | Skill | Invoke when... |
 |---|---|
-| `/discuss` | Exploring a problem, approach, or scientific topic |
+| `/software-align` | Requesting a new feature or substantial edits to a codebase or file |
+| `/sci-discuss` | Exploring a scientific topic, problem, or approach |
 | `/research` | Investigating a topic, comparing options, or building background knowledge |
 | `/grant-write` | Writing or editing a grant proposal or any part of one |
 | `/sci-write` | Writing or editing a scientific paper, abstract, methods, results, or discussion |
@@ -27,12 +28,14 @@ Invoke the relevant skill before responding. Skills are stateless — re-invoke 
 
 For implementation work, follow this skill chain — invoke each skill yourself, whether or not I typed the slash command:
 
-1. `/discuss` — explore the idea, converge on resolved decisions.
+1. `/software-align` — explore the idea, converge on resolved decisions.
 2. `/spec-write` — write the spec from those decisions.
 3. `/software-eng` — once the spec is approved, break it into tickets.
 4. `/tdd` — implement the change, one ticket or one description at a time.
 
-Enter where it fits: a bug goes straight to `/debug`; reviewing existing code goes to `/code-review`; a trivial one-function change can skip discuss and spec-write — confirm scope with me, then `/tdd`.
+Enter where it fits: a bug goes straight to `/debug`; reviewing existing code goes to `/code-review`; a trivial one-function change can skip software-align and spec-write — confirm scope with me, then `/tdd`.
+
+Every change should leave the codebase no larger or more tangled than it needs to be: prefer extending an existing function to cover the new case over adding a parallel one, and delete the code your change supersedes — leave no duplicated or dead code behind.
 
 After the work, check whether the project `CLAUDE.md` or `README` need updating.
 
@@ -42,6 +45,7 @@ After the work, check whether the project `CLAUDE.md` or `README` need updating.
 - Never manually patch merge conflicts. Use `git merge`. Stash or commit first if the working directory is dirty.
 - Work on the current branch; never create branches, git worktrees, or worktree-isolated agents unless I explicitly ask.
 - Only change what was requested. Collect off-task findings and present them for approval.
+- Optimize the whole, not just the part. When you make a change, integrate it into what exists and remove what it makes redundant — do not bolt it on beside the old version.
 - Verify before acting. Check every claim, value, path, name, and command. Do not act on assumptions. Use a method that can actually detect the distinction you are claiming, not one that could silently mask it.
 - Never fabricate. If you have not observed it, say so.
 

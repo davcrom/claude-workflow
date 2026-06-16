@@ -15,6 +15,7 @@ Invoke the relevant skill before responding. Skills are stateless — re-invoke 
 | `/research` | Investigating a topic, comparing options, or building background knowledge |
 | `/grant-write` | Writing or editing a grant proposal or any part of one |
 | `/sci-write` | Writing or editing a scientific paper, abstract, methods, results, or discussion |
+| `/rec-letter` | Writing or editing a recommendation or reference letter |
 | `/spec-write` | Writing or updating a spec before implementation |
 | `/software-eng` | After a spec is approved — to break it into implementation tickets |
 | `/tdd` | Writing or modifying code |

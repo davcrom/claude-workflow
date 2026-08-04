@@ -3,9 +3,9 @@ set -euo pipefail
 
 SETTINGS="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/ralph-loop-settings.json"
 
-LOOP_PROMPT='Read every specs/*.md whose Status is Approved. Find every ticket file under tickets/ whose Spec: field matches an approved spec slug, whose Status is Todo, and whose every Blocked by entry refers to a ticket with Status: Done. Same-spec entries take the form <NN>; cross-spec entries take the form <spec-slug>/<NN>. From the eligible set, pick the ticket with the lowest <NN>, ties broken by ascending spec slug. Invoke /tdd on that ticket. Exit when the tickets Status is Done or Blocked.'
+LOOP_PROMPT='Read every specs/*.md whose Status is Approved. Find every ticket file under tickets/ whose Spec: field matches an approved spec slug, whose Status is Todo, and whose every Blocked by entry refers to a ticket with Status: Done. Same-spec entries take the form <NN>; cross-spec entries take the form <spec-slug>/<NN>. From the eligible set, pick the alphabetically-first spec slug; within that spec, pick the ticket with the lowest <NN>. Invoke /tdd on that ticket. This is a single non-interactive run: you will NOT be re-invoked to continue, and background processes die when your turn ends. Run any checks in the foreground and commit the code before you stop — a ticket is not resolved until it is committed. Exit only after committing, when the tickets Status is Done or Blocked.'
 
-DRY_RUN_PROMPT='Read every specs/*.md whose Status is Approved. Find every ticket file under tickets/ whose Spec: field matches an approved spec slug, whose Status is Todo, and whose every Blocked by entry refers to a ticket with Status: Done. From the eligible set, pick the ticket with the lowest <NN>, ties broken by ascending spec slug. Print the picked ticket as <spec-slug>/<NN> on stdout and exit without modifying any file.'
+DRY_RUN_PROMPT='Read every specs/*.md whose Status is Approved. Find every ticket file under tickets/ whose Spec: field matches an approved spec slug, whose Status is Todo, and whose every Blocked by entry refers to a ticket with Status: Done. From the eligible set, pick the alphabetically-first spec slug; within that spec, pick the ticket with the lowest <NN>. Print the picked ticket as <spec-slug>/<NN> on stdout and exit without modifying any file.'
 
 usage() {
     cat >&2 <<'EOF'
@@ -95,11 +95,26 @@ approved_tickets() {
     done < <(approved_slugs)
 }
 
-todos_remain() {
+# Ticket paths this run is driving: every ticket whose spec was Approved when
+# the run started, frozen for the run's duration. Freezing matters because the
+# agent flips a spec's `## Status` to Implemented once its last ticket is Done;
+# recomputing the set from Approved specs each iteration would then drop that
+# spec's tickets mid-iteration, hiding the completing Todo->Done transition and
+# tripping the no_progress guard. Specs already Implemented before the run
+# starts never enter this set, so the summary shows only this run's work.
+declare -A SEEN_TICKETS
+init_seen_tickets() {
     local t
     while IFS= read -r t; do
-        grep -q "^Status: Todo\$" "$t" && return 0
+        SEEN_TICKETS["$t"]=1
     done < <(approved_tickets)
+}
+
+todos_remain() {
+    local t
+    for t in "${!SEEN_TICKETS[@]}"; do
+        grep -q "^Status: Todo\$" "$t" && return 0
+    done
     return 1
 }
 
@@ -113,9 +128,9 @@ snapshot_status() {
     local -n _snap="$1"
     _snap=()
     local t
-    while IFS= read -r t; do
+    for t in "${!SEEN_TICKETS[@]}"; do
         _snap["$t"]=$(ticket_status "$t")
-    done < <(approved_tickets)
+    done
 }
 
 # Print, to stderr, how each approved-spec ticket moved between loop start
@@ -160,6 +175,7 @@ log_line() {
 # Baseline for the exit summary, and the trap that prints it on every exit path
 # (clean finish, error, uncommitted, no_progress, blocked, cap).
 declare -A START_STATUS before_status after_status
+init_seen_tickets
 snapshot_status START_STATUS
 EXIT_REASON="finished"
 trap print_summary EXIT

@@ -80,10 +80,13 @@ written in bulk check imagined behavior, not real behavior.
 - Inspect output data structures: shapes, types, null counts, value ranges.
 - If a ticket was named, confirm its Acceptance check passes end to end;
   otherwise confirm the change behaves as the caller described.
+- Scope the test run to the acceptance check and the tests covering the code you
+  touched — not the whole suite. Running every test is a pre-push step, not a
+  per-change gate.
 - If the ticket's "Removes" section lists code, delete it and confirm the tests
-  still pass. The ticket is not done until that code is gone. Do not originate
-  deletions: superseded code the ticket did not list is an out-of-scope finding
-  you flag, not something you act on.
+  covering the touched code still pass. The ticket is not done until that code is
+  gone. Do not originate deletions: superseded code the ticket did not list is an
+  out-of-scope finding you flag, not something you act on.
 - If a ticket was named, set its Status to Done.
 - If a ticket was named, read the spec slug from its `Spec:` field. When every
   ticket file whose `Spec:` matches that slug has `Status: Done`, set the spec's

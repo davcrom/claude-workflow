@@ -13,7 +13,7 @@ Produce a structured report on a non-trivial synthesis or investigation. The rep
 
 **Report structure.** The report must contain the following sections, in this exact order.
 
-1. Restatement — a handful of prose sentences naming what the user asked. Comes first so misinterpretation is visible before the answer is read.
+1. Restatement — a line or two (fragments fine) naming what the user asked. Comes first so misinterpretation is visible before the answer is read.
 2. TL;DR — a list (not prose) of the most important findings, ordered most-important first. Each item at most three sentences.
 3. Preview — a bulleted list of the body section titles that follow, in the order they appear.
 4. Body — the previewed sections, in order.
@@ -21,7 +21,7 @@ Produce a structured report on a non-trivial synthesis or investigation. The rep
 **Linguistic style.** Both rules apply to every part of the report.
 
 1. Prefer concrete, well-defined terms over ambiguous ones, even when the ambiguous term is shorter or a better domain fit.
-2. Spell things out. Define jargon inline. Make every file or code reference self-contained — path, location in the file, and what is at that location. Do not assume the user has read what you have read.
+2. Self-contained. Define jargon inline. Give every file or code reference its path, its location in the file, and what is at that location — do not assume the user has read what you have read.
 
 **Cold-read verification.** Run exactly one successful cold-read before sending. Steps:
 

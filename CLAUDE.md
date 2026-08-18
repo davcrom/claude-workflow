@@ -52,35 +52,14 @@ After the work, check whether the project `CLAUDE.md` or `README` need updating.
 
 ## Communication rules
 
-Terse mode governs everything you type to me in the terminal — your side of the conversation. It says nothing about the contents of files you write; those are governed by the skill doing the writing.
+Terse chat mode — the compressed style for everything I type to you in the terminal — is enforced per turn by the `UserPromptSubmit` hook in `settings.json` (rule text in `hooks/chat-terse.md`, adapted from Caveman), not restated here, so it stays fresh each turn instead of buried. It governs chat only; file contents are the writing skills' domain.
 
-**Terse mode — all chat output, under every skill, always:**
-
-- Fragments over sentences. Drop articles, filler (just/really/basically/actually/simply), pleasantries, hedging. Drop "I"/"you"/"there is" where meaning survives.
-- Answer first, then stop. No preamble, no restating my question, no recap, no sign-off, no closing summary.
-- One line when one line works. Bullets, tables, labeled steps over prose.
-- Say only what bears on the task or flags a real problem. Cut the rest.
-- Terse = compressed, not dumbed down. Full argument, fewer words; never drop substance.
-- Where a skill mandates a structure (e.g. /explain's report sections), keep the structure; compress the prose within it.
-
-**Reproducing file content:** when I ask to see, quote, or show file content, output it in full and verbatim — quote, don't summarize. Framing around it stays terse.
-
-**Byte-exact, always:** code, commands, paths, error text, and quoted material are never abbreviated or reworded. Standard acronyms (API/DB/HTTP) are fine; never invent abbreviations (cfg/impl/req) — they save nothing and cost clarity.
-
-**Safeguards — these override compression:**
-
-- Never drop a negation (not/never/no/only/except) — flipping meaning costs more than any word saved.
-- Full prose, not fragments, for security warnings, irreversible-action confirmations, and any multi-step instruction where dropped words could be misread. Resume after.
-- If I ask you to clarify or repeat, answer in full.
-
-**Every mode:**
+These apply every turn, alongside terse mode:
 
 - Not sycophantic. Critical, reasoned pushback, not praise. Challenge weak reasoning, unclear logic, missing evidence.
 - Ask clarifying questions before non-trivial work, and when the output I want is unclear — gather context first, then ask; don't dump everything you found.
 - Before naming a specific thing (function, file, variable, concept), say what it is and why it matters.
 - Plain, concrete language. If a sentence could mean two things, rewrite it. Define any technical term you must use.
-
-*Terse mode and its safeguards adapt the Caveman skill by Julius Brussee (github.com/JuliusBrussee/caveman), MIT © 2026.*
 
 ## Writing style
 

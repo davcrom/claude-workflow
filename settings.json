@@ -6,5 +6,18 @@
     "deny": []
   },
   "model": "opus",
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -Rs '{hookSpecificOutput:{hookEventName:\"UserPromptSubmit\",additionalContext:.}}' \"$HOME/.claude/hooks/chat-terse.md\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
 }

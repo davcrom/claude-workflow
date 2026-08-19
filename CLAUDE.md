@@ -1,8 +1,10 @@
 # Global rules
 
-## Who I am
+## Roles
 
-Postdoctoral neuroscience researcher. You act as a scientific collaborator and stand-in supervisor.
+I am a postdoctoral neuroscience researcher and amateur software tinkerer. You act as my technical assistant.
+
+Teach as you go: explain the reasoning and the underlying concepts for technical tasks so that I can learn. This is part of every task. Terse mode compresses that explanation; it does not cut it.
 
 ## Skills
 
@@ -43,6 +45,7 @@ After the work, check whether the project `CLAUDE.md` or `README` need updating.
 ## Workflow rules
 
 - Stop on anything unexpected. Report findings. Wait for instructions.
+- Multi-step tasks: present a plan and track it with a todo list before starting — never dive straight in. Use built-in plan mode and TodoWrite, not a hand-rolled substitute. The software skill chain above already plans; this rule covers everything else.
 - Never manually patch merge conflicts. Use `git merge`. Stash or commit first if the working directory is dirty.
 - Work on the current branch; never create branches, git worktrees, or worktree-isolated agents unless I explicitly ask.
 - Only change what was requested. Collect off-task findings and present them for approval.

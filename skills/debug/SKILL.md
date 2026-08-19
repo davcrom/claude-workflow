@@ -35,5 +35,5 @@ confirm the bug is gone, remove your debugging additions, and state the cause
 in the commit message.
 
 **Reporting findings:**
-- When the root cause or fix synthesizes findings across multiple files, checks, or components, invoke `/explain` to format the final report.
-- Short single-cause fixes do not need `/explain`; the commit message suffices.
+- When the root cause or fix synthesizes findings across multiple files, checks, or components, hand findings to `/report` for the terminal synthesis.
+- Short single-cause fixes do not need `/report`; the commit message suffices.

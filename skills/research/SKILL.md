@@ -23,5 +23,5 @@ description: Invoke when investigating a topic, comparing options, reviewing lit
 - Identify what the document adds: methods, predictions, testable dissociations.
 
 **Reporting findings:**
-- Invoke `/explain` to format the final report.
-- Synthesis, open questions, and sources are sections of the `/explain` body.
+- Hand findings to `/report` for the terminal synthesis.
+- Synthesis, open questions, and sources are sections of the `/report` body.

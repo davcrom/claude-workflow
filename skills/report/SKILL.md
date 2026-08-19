@@ -1,5 +1,5 @@
 ---
-name: explain
+name: report
 description: Invoke when producing a non-trivial synthesis or report — multi-source work (multiple files, multi-step investigation, external research), repository overviews, long single-file overviews, research outcomes, or final reports handed off from /research, /debug, or /code-review. Does not fire when the user has constrained the response to a short form.
 ---
 

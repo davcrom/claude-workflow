@@ -23,7 +23,7 @@ Invoke the relevant skill before responding. Skills are stateless — re-invoke 
 | `/tdd` | Writing or modifying code |
 | `/debug` | Tracking down why code produces wrong or unexpected results |
 | `/code-review` | Reviewing a codebase or a section of it for structure, documentation, and code quality |
-| `/explain` | Producing a non-trivial synthesis or report — multi-source, repository or long-file overviews, research outcomes, or final reports handed off from `/research`, `/debug`, `/code-review` |
+| `/report` | Producing a non-trivial synthesis or report — multi-source, repository or long-file overviews, research outcomes, or final reports handed off from `/research`, `/debug`, `/code-review` |
 | `/reflect` | After a task where workflow, project structure, or process knowledge changed |
 | `/skill-write` | Writing or editing a skill |
 
@@ -41,6 +41,18 @@ Enter where it fits: a bug goes straight to `/debug`; reviewing existing code go
 Every change should leave the codebase no larger or more tangled than it needs to be: prefer extending an existing function to cover the new case over adding a parallel one, and delete the code your change supersedes — leave no duplicated or dead code behind.
 
 After the work, check whether the project `CLAUDE.md` or `README` need updating.
+
+## Investigation and reporting workflow
+
+Investigative skills end by handing their findings to `/report`, which formats the terminal synthesis:
+
+- `/research` — investigate a topic.
+- `/debug` — track a fault (multi-cause or multi-file only; a short single-cause fix stays in the commit message).
+- `/code-review` — audit code.
+
+`/report` owns structure, style, and the cold-read verification. The source skill owns the investigation and hands over raw findings — question, evidence, paths — without pre-formatting.
+
+Enter directly: `/report` also works standalone for a synthesis with no upstream skill.
 
 ## Workflow rules
 

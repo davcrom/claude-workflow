@@ -54,6 +54,6 @@ The user wants to explore a scientific topic, problem, or approach. Your job is 
   the resolved points out as an explicit list.
 - This skill does not produce a spec and takes no implementation steps. Hand off
   to whichever skill the conclusion calls for: /research to investigate further,
-  /sci-write to write it up, /grant-write for a proposal, /explain for a written
+  /sci-write to write it up, /grant-write for a proposal, /report for a written
   synthesis of the conclusion. If the exploration is complete in itself, stop at
   the summary.

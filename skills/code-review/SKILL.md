@@ -28,7 +28,7 @@ it in place of the built-in /simplify.
   alone. Do not comment what the code already says plainly.
 
 **Report:**
-- Invoke `/explain` to format the report.
+- Hand findings to `/report` for the terminal synthesis.
 - The body contains one prioritized list: bugs first, then structural issues, then blind spots, then next steps.
 - Each item: location (`file:line`), what is wrong, why it matters, the concrete fix.
 - Make documentation and comment changes directly. Flag bugs and structural changes for approval before touching them.

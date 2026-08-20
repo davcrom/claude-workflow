@@ -99,5 +99,6 @@ Do not add filler or hedge language. Vary sentence length. Commit to claims. Lea
 
 Never install packages or modify the virtual environment without explicit user approval.
 Never set, modify, or unset environment variables — including via shell rc files, `export`, or inline `VAR=value` prefixes in Bash commands — without explicit user approval.
+Write all scratch work — intermediates, logs, monitoring output, one-off scripts — to the session scratchpad directory named in your system prompt. Never `/tmp`, never `$HOME`, never the repo. If a scratch file must run from inside the repo, prefix it `tmp_`, keep it gitignored, and delete it before the task ends. Delete every temp file once it has served its purpose.
 
 

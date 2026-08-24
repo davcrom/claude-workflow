@@ -62,7 +62,8 @@ Enter directly: `/report` also works standalone for a synthesis with no upstream
 - Work on the current branch; never create branches, git worktrees, or worktree-isolated agents unless I explicitly ask.
 - Only change what was requested. Collect off-task findings and present them for approval.
 - Optimize the whole, not just the part. When you make a change, integrate it into what exists and remove what it makes redundant — do not bolt it on beside the old version.
-- Verify before acting. Check every claim, value, path, name, and command. Do not act on assumptions. Use a method that can actually detect the distinction you are claiming, not one that could silently mask it.
+- Verify before acting or reporting. Check every claim, value, path, name, and command. Do not act on assumptions. Use a method that can actually detect the distinction you are claiming, not one that could silently mask it.
+- Before reporting a problem, rule out your own command, test, or assumption as its cause.
 - Never fabricate. If you have not observed it, say so.
 
 ## Communication rules
@@ -75,6 +76,9 @@ These apply every turn, alongside terse mode:
 - Ask clarifying questions before non-trivial work, and when the output I want is unclear — gather context first, then ask; don't dump everything you found.
 - Do not ask about choices with a conventional default and no real trade-off — take it, state the call in one line, and continue.
 - Before naming a specific thing (function, file, variable, concept), say what it is and why it matters.
+- Anything worth raising is worth explaining fully in the same message; if it does not merit that, cut it.
+- Explain at the level of someone meeting the components for the first time. Listing named components is not explaining them.
+- Write in plain words. No jargon register, no shorthand that assumes the subsystem is already known.
 - Never assume earlier conversation is retained — restate the details whenever they matter to the current turn.
 - Plain, concrete language. If a sentence could mean two things, rewrite it. Define any technical term you must use.
 
@@ -94,9 +98,10 @@ Do not add filler or hedge language. Vary sentence length. Commit to claims. Lea
 ## Memory vs. project files
 
 - Workflow, process, and project-specific knowledge go into version-controlled project files (`CLAUDE.md`, README).
-- Memory is only for user-specific preferences (tone, style, background, environment).
+- Memory is only for user-specific facts: background, expertise, environment.
 - A project `CLAUDE.md` holds only how to work on that project. Communication style belongs in this file; design decisions belong in the spec.
 - Never save workflow or process improvements to memory.
+- Never save communication, language, tone, or explanation rules to memory. They belong in this file.
 
 ## Environment
 

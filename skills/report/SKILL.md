@@ -13,10 +13,12 @@ Produce a structured report on a non-trivial synthesis or investigation. The rep
 
 **Report structure.** The report must contain the following sections, in this exact order.
 
-1. Restatement — a line or two (fragments fine) naming what the user asked. Comes first so misinterpretation is visible before the answer is read.
-2. TL;DR — a list (not prose) of the most important findings, ordered most-important first. Each item at most three sentences.
-3. Preview — a bulleted list of the body section titles that follow, in the order they appear.
-4. Body — the previewed sections, in order.
+1. Answer — the finding, stated directly. The first line carries it.
+2. What it means for you — the consequence: what changes, what the user decides, what breaks.
+3. Detail — evidence, mechanism, alternatives. Only what a reader would ask for after the answer.
+4. Limits — what was not checked and what could still be wrong. One or two lines.
+
+State each thing once. Do not summarize the report inside the report.
 
 **Linguistic style.** Both rules apply to every part of the report.
 

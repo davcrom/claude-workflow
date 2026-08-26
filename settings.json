@@ -3,7 +3,8 @@
     "allow": [
       "Skill"
     ],
-    "deny": []
+    "deny": [],
+    "defaultMode": "default"
   },
   "model": "opus",
   "effortLevel": "high",

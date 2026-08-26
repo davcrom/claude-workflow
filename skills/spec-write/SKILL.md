@@ -12,6 +12,15 @@ not implementation notes.
   any analysis plan, experiment design, or data pipeline.
 - One file per task: specs/<short-task-slug>.md
 
+**Starting from a draft:**
+- /software-align leaves its resolved decisions in that same file, in the order
+  they were made.
+- Rewrite it in place into the template. No second file, no raw log left behind.
+- Place every decision: what it does in the body, why in Decisions, anything
+  marked open in Open questions.
+- Reorder freely so the spec reads top to bottom.
+- Verify anything the draft omits. Do not infer it.
+
 **Verified facts only:**
 - Every input, output, type, path, name, and dependency must be something you have
   observed — read in a file, seen in real data, or stated by the user.

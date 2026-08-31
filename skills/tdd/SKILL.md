@@ -33,6 +33,10 @@ written in bulk check imagined behavior, not real behavior.
    checks observable behavior through the public interface, not internal
    details, so it survives refactoring. Run it. Failure must come from missing
    logic, not a missing symbol.
+   - Exception: never test an absence — that a function, variable, parameter,
+     or output key is gone. The deletion proves it; the check is that the tests
+     covering the touched code still pass. A required rejection is behavior,
+     not absence, and does get a test.
 2. GREEN: write the minimum code to pass. Run it.
 3. REFACTOR: with tests passing, answer each question below explicitly as
    "yes — fixed," "yes — out of scope, flagged," or "no." No new features.
@@ -44,6 +48,7 @@ written in bulk check imagined behavior, not real behavior.
    - Are there loops where a comprehension or vectorized operation could have been used?
    - Does any function do more than one thing and want splitting?
    - Is there anything a cold reader couldn't understand from the code alone?
+   - Does any test exist only to assert removed behavior is absent? Delete it.
    - Does every non-trivial function carry a NumPy-style docstring covering what
      its signature does not show — units, shape, side effects, why?
 4. COMMIT: one logical change per commit. Stage only the files this change

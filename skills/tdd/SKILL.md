@@ -22,8 +22,9 @@ a ticket was named, set its Status to In progress before starting.
   quoting the concrete obstacle in one short paragraph, then return to
   `/software-eng` or `/spec-write`. Otherwise return to `/software-align` or
   `/spec-write` as appropriate. Do not improvise a fix in code.
-- Stay within the named scope. Flag out-of-scope findings for approval; do not
-  act on them.
+- Stay within the named scope. Flag an out-of-scope finding only if it is
+  critical: it breaks something in use, or makes the work you were asked for
+  wrong. Drop everything else silently. Never act on one without approval.
 
 **RED-GREEN-REFACTOR-COMMIT:**
 Every change, no exceptions. Work one behavior at a time — one test, then the
@@ -39,7 +40,8 @@ written in bulk check imagined behavior, not real behavior.
      not absence, and does get a test.
 2. GREEN: write the minimum code to pass. Run it.
 3. REFACTOR: with tests passing, answer each question below explicitly as
-   "yes — fixed," "yes — out of scope, flagged," or "no." No new features.
+   "yes — fixed," "yes — out of scope, flagged if critical," or "no." No new
+   features.
    - Does the code follow the repo's existing organizational patterns?
    - Did you write code when a built-in method or existing utility could have been used?
    - Is there duplicated logic that could be replaced with a reusable function or method?
@@ -91,7 +93,7 @@ written in bulk check imagined behavior, not real behavior.
 - If the ticket's "Removes" section lists code, delete it and confirm the tests
   covering the touched code still pass. The ticket is not done until that code is
   gone. Do not originate deletions: superseded code the ticket did not list is an
-  out-of-scope finding you flag, not something you act on.
+  out-of-scope finding you flag only if critical, not something you act on.
 - If a ticket was named, set its Status to Done.
 - If a ticket was named, read the spec slug from its `Spec:` field. When every
   ticket file whose `Spec:` matches that slug has `Status: Done`, set the spec's

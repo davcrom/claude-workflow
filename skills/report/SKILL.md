@@ -9,7 +9,7 @@ Produce a structured report on a non-trivial synthesis or investigation. The rep
 
 1. Produce — draft the report following the structure and style rules below.
 2. Review — send the draft to a cold-read subagent for verification.
-3. Update — revise the draft to clarify anything the subagent flagged, then send it.
+3. Update — clarify what the subagent found unclear, cut what it did not need, then send it.
 
 **Report structure.** The report must contain the following sections, in this exact order.
 
@@ -29,10 +29,10 @@ State each thing once. Do not summarize the report inside the report.
 
 1. Spawn a subagent via the Agent tool with `subagent_type: general-purpose`.
 2. Build the subagent prompt: the full draft report, a blank line, then this exact suffix:
-   > Do not read any documents, do not explore the filesystem, do not run any code. Based only on the text above, report (a) what you understood about the user's question and the answer, and (b) a summary of any ambiguities — places where the meaning is unclear or open to multiple interpretations.
+   > Do not read any documents, do not explore the filesystem, do not run any code. Based only on the text above, report (a) what you understood about the user's question and the answer, (b) a summary of any ambiguities — places where the meaning is unclear or open to multiple interpretations, and (c) anything you did not need in order to understand it.
 3. Pass no other context — no conversation history, no user profile, no description of the user.
 4. Wait for the subagent's report.
-5. If the report flags ambiguities or misunderstanding, revise the draft to clarify them. Do not remove flagged content.
+5. Revise the draft: clarify what the subagent found ambiguous, cut what it did not need. Cutting an irrelevant passage is a valid clarification; cutting a finding to dodge an ambiguity is not.
 6. Send the (possibly revised) report.
 
 If the Agent tool errors, retry — a tool failure is not a cold-read. The no-second-pass rule below applies only once a cold-read has returned a report. If retries keep failing, tell the user the cold-read failed and send the unrevised draft.

@@ -4,8 +4,8 @@ description: Invoke when writing or updating a spec — a standalone design arti
 ---
 
 A spec concisely captures all the essential information the implementation needs.
-It is not a design discussion (/software-align), not a literature review (/research),
-not implementation notes.
+It is technical specification, not narrative. It is not a design discussion
+(/software-align), not a literature review (/research), not implementation notes.
 
 **When to write one:**
 - Any non-trivial task: anything touching more than one function, any new module,
@@ -16,8 +16,10 @@ not implementation notes.
 - /software-align leaves its resolved decisions in that same file, in the order
   they were made.
 - Rewrite it in place into the template. No second file, no raw log left behind.
-- Place every decision: what it does in the body, why in Decisions, anything
-  marked open in Open questions.
+- Place every decision: what it does in the body, binding constraints in
+  Decisions, anything marked open in Open questions.
+- Discard the draft's narrative — quotes, options considered, order of
+  discussion, reasoning that binds nothing.
 - Reorder freely so the spec reads top to bottom.
 - Verify anything the draft omits. Do not infer it.
 
@@ -29,11 +31,23 @@ not implementation notes.
 - Anything you cannot verify, and any decision not yet made, goes in Open
   questions — never stated as fact in the body.
 
+**No narrative:**
+- No user quotes, no conversation history, no account of how a decision was
+  reached, no options that were rejected.
+- No background or motivation beyond the one-paragraph Problem statement.
+- No notes to the reader, no summary of what changed in the spec.
+- Every line must tell the implementer what to build or what not to build. Cut
+  anything else, however true.
+
 **Decisions:**
 - Design (what it does) and rationale (why) stay separate. The body says what;
   the Decisions section says why.
-- Record each design decision in the Decisions section with its stated source or
-  reason. Generic principles are not reasons.
+- Record a decision only where the implementation would plausibly go another way
+  without it. Justification exists to prevent stray implementation, nothing else.
+- One line each, stating the constraint. Add the reason only when the reason is
+  what makes it binding. No attribution, no quoted reasoning.
+- Generic principles are not reasons. A decision that constrains nothing is not
+  recorded.
 
 **Scope:**
 - Enumerate every file the change touches in Behavior. Nothing implicit.
@@ -79,8 +93,8 @@ What this explicitly does not do.
 *Populated by /software-eng at slice time. Not maintained as tickets change state.*
 
 ## Decisions
-Each design decision with its stated source or reason. Rationale and
-metacommentary live here, not in the body.
+Constraints that would otherwise be implemented some other way, one line each.
+Reason only where the reason is what binds. Empty is a valid section.
 
 ## Open questions
 Anything unverified or unresolved. Must be empty before Approved.

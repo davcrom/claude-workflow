@@ -60,7 +60,11 @@ The user has a request. Your job is to relentlessly interview the user, asking a
 **Draft spec file**
 - Create specs/<short-task-slug>.md at the first resolved decision.
 - Write each decision to the file before asking the next question.
-- Entry: decision, user's reason, files it lands on with paths.
+- Entry: the decision, the files it lands on with paths, and the constraint it
+  puts on implementation where the implementation would otherwise go another way.
+- Record the outcome, never the discussion. No user quotes, no rejected options,
+  no motivation, no reasoning that binds nothing. The draft is spec material, not
+  a transcript.
 - Keep decision order. No reordering, no formatting to the spec template.
 - Mark unresolved items open; edit in place when resolved.
 - Never write an unapproved decision.
